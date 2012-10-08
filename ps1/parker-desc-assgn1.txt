@@ -1,0 +1,50 @@
+David Parker
+CSCI5832 - NLP
+Assignment 1: Deterministic English Segmentation
+September 16, 2012
+------------------------------------------------
+
+------------
+Part 1: Implement and explore the behavior of MaxMatch algorithm
+When it fails, what is the source of the failure?
+  There are a few things that could cause the failure.
+  1) There may be words in the dictionary (corpus) that shouldn't be there.
+  2) There may be words that aren't in the dictionary (corpus) that should be.
+  3) There may be compound words- that is words that can be broken into multiple pieces.
+  4) There may be words that end in s d or r that may be able to be part of the previous word as well as the next word.
+  5) Unicode is a problem (as well as other non-alphanumeric).
+How many different kind of failures are there?
+  There are probably an unlimited different kinds of failure, depending on the language used, the dictonary provided, and what the users want. For example, there are five very simple examples listed above.
+
+------------
+Part 2: Computing WER
+The first step in computing WER is to compute the minimum number of edits
+(deletions, insertions and substitutions) to get from the system's hypothesis to the actual correct reference answer.
+WER is then just the length normalized minimum edit distance 
+(i.e, minimum edit distance divided by the length of the reference in terms of words).
+Calculated WER based on the input set using regular MaxMatch algorithm:
+By averaged WERs =0.3814285714297.6285714285720
+By totalling WER =0.3770491803282361
+
+------------
+Part 3: Improving MaxMatch
+Tweak the original algorithm or alter the lexicon or both
+Limit yourself to considerations such as:
+(1) changing the MaxMatch strategy, 
+(2) changing the greedy nature of its heuristic, or 
+(3) manipulations to your lexicon.
+
+Improvements made:
+1) Manipulate Lexicon. Clean up the corpus by removing single character words.
+2) Manipulate Lexicon. Clean up two character words.
+3) Changing MaxMatch Strategy. Keep current max length word, then forward look 
+   to see if we can build a longer one. If we can, then add rest as shorter words 
+   or single characters
+4) Changing MaxMatch Strategy. Check to see if the string is a digit (positive numbers only)
+5) Changing MaxMatch Strategy. We know the longest length word in the corpus- don't
+   search for something longer than that.
+6) Something to do with Unicode???
+
+Calculated WER based on the input set using modified MaxMatch algorithm:
+By averaged WERs =0.12.020
+By totalling WER =0.0655737704918461
